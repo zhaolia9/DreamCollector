@@ -14,7 +14,7 @@ Aurelia is a dream-and-poetry platform where users log dreams, tag symbols, and 
 2. Install deps:
    - `pip install -r backend/requirements.txt`
 3. Run:
-   - `python backend/app.py`
+   - `python backend/test_harness.py`
 
 ## Architecture
 - models/ = domain objects
