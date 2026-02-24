@@ -1,4 +1,4 @@
-from backend.data.data_provider import DataProvider
+from app.data.data_provider import DataProvider
 
 def print_users(dp):
     print("\n--- USERS ---")
