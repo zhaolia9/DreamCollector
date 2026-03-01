@@ -4,8 +4,6 @@ Aurelia is a dream-and-poetry platform where users log dreams, tag symbols, and 
 
 ## Tech
 - Python
-- Flask
-- Flask-CORS
 - PyMySQL
 - Requests (for console frontend)
 - Uvicorn
