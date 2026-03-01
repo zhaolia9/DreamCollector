@@ -195,7 +195,7 @@ This project demonstrates:
 
 # 🔮 Future Improvements
 
-* Web-based frontend (React or Flask templates)
+* Web-based frontend
 * Authentication (JWT)
 * Role-based access control
 * Pagination for large datasets
