@@ -4,6 +4,7 @@ import os
 import mysql.connector
 from mysql.connector import Error
 
+
 class DataProvider:
     def __init__(self):
         print("Connecting to DB...")

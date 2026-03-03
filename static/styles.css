@@ -1,0 +1,214 @@
+/* --------------------------
+   Dream Journal Aesthetic
+--------------------------- */
+
+body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #2c2c54, #474787, #706fd3);
+    background-attachment: fixed;
+    color: #f8f8ff;
+}
+
+/* Subtle dreamy overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06), transparent 40%);
+    pointer-events: none;
+}
+
+/* --------------------------
+   Title
+--------------------------- */
+
+h1 {
+    text-align: center;
+    padding: 30px 0 10px 0;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    font-weight: normal;
+    color: #fdfdff;
+    text-shadow: 0 0 12px rgba(255,255,255,0.4);
+}
+
+/* --------------------------
+   Navigation
+--------------------------- */
+
+.nav {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.nav button {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 12px 22px;
+    margin: 8px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.nav button:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+/* --------------------------
+   Section Container
+--------------------------- */
+
+.section {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    padding: 30px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(15px);
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.section.active {
+    display: block;
+}
+
+/* --------------------------
+   Dream Cards
+--------------------------- */
+
+.card {
+    background: rgba(255,255,255,0.2);
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+.card h3 {
+    margin-top: 0;
+    font-weight: normal;
+    font-size: 1.3rem;
+}
+
+/* --------------------------
+   Response Section (Always Visible)
+--------------------------- */
+
+.response-container {
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    padding: 20px;
+}
+
+.response-container h2 {
+    text-align: center;
+}
+
+.response-container .card {
+    background: rgba(255,255,255,0.15);
+}
+
+/* --------------------------
+   Forms
+--------------------------- */
+
+form {
+    margin-bottom: 25px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    background: rgba(255,255,255,0.85);
+    color: #2c2c54;
+}
+
+textarea {
+    font-family: 'Georgia', serif;
+    resize: vertical;
+    min-height: 100px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(255,255,255,0.8);
+}
+
+/* --------------------------
+   Buttons
+--------------------------- */
+
+button {
+    font-family: 'Georgia', serif;
+}
+
+button.submit-btn {
+    background: linear-gradient(45deg, #a29bfe, #74b9ff);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+button.delete-btn {
+    background: rgba(255, 118, 117, 0.9);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 14px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s ease;
+}
+
+button.delete-btn:hover {
+    background: rgba(214, 48, 49, 1);
+}
+
+/* --------------------------
+   Responsive
+--------------------------- */
+
+@media (max-width: 768px) {
+    .section {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .nav button {
+        width: 90%;
+        margin: 6px auto;
+        display: block;
+    }
+}

@@ -18,7 +18,7 @@ Running Locally:
 2. Install dependencies:
    pip install fastapi uvicorn mysql-connector-python pydantic
 3. Run the server:
-   uvicorn app_api:app --reload
+   uvicorn aurelia.app_api:app --reload
 4. Open Swagger UI at http://127.0.0.1:8000/docs
 
 Hosting Options:
@@ -27,7 +27,9 @@ Hosting Options:
 - Heroku: add MySQL add-on, use Procfile: "web: uvicorn app_api:app --host 0.0.0.0 --port $PORT"
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from typing import List, Optional
 
@@ -78,6 +80,16 @@ class PoemSchema(BaseModel):
 class DreamSymbolSchema(BaseModel):
     dream_id: int
     symbol_id: int
+
+# Mount static files for frontend assets (if needed)
+# This allows you to serve CSS, JS, and images from the "static" directory.
+# You can access these files in your frontend using /static/filename.ext
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Root endpoint to serve the frontend (if using a single-page app)
+@app.get("/")
+def serve_client():
+    return FileResponse("templates/index.html")
 
 # ----------------------
 # USERS Endpoints

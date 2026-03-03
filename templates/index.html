@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aurelia Dream Journal Web Client</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+
+<h1>✧ Aurelia Dream Journal Web Client✧</h1>
+
+<p style="text-align:center; opacity:0.8; font-style:italic;">
+Log your dreams, explore their meanings, and find poetic inspiration with our intuitive web client.
+</p>
+
+<!-- Navigation -->
+<div class="nav">
+    <button onclick="showSection('users')">Users</button>
+    <button onclick="showSection('dreams')">Dreams</button>
+    <button onclick="showSection('symbols')">Symbols</button>
+    <button onclick="showSection('poems')">Poems</button>
+    <button onclick="showSection('dreamsymbols')">Dream Symbols</button>
+</div>
+
+<!-- USERS -->
+<div id="users" class="section active">
+    <h2>Users</h2>
+
+    <div class="card">
+        <button onclick="getAllUsers()">Get All Users</button>
+        <input id="userId" placeholder="User ID">
+        <button onclick="getUser()">Get User</button>
+        <button onclick="deleteUser()">Delete User</button>
+    </div>
+
+    <div class="card">
+        <input id="userName" placeholder="Name">
+        <input id="userEmail" placeholder="Email">
+        <button class="submit-btn" onclick="createUser()">Create User</button>
+        <button class="submit-btn" onclick="updateUser()">Update User</button>
+    </div>
+</div>
+
+<!-- DREAMS -->
+<div id="dreams" class="section">
+    <h2>Dreams</h2>
+
+    <div class="card">
+        <button onclick="getAllDreams()">Get All Dreams</button>
+        <input id="dreamId" placeholder="Dream ID">
+        <button onclick="getDream()">Get Dream</button>
+        <button onclick="deleteDream()">Delete Dream</button>
+    </div>
+
+    <div class="card">
+        <input id="dreamUserId" placeholder="User ID">
+        <input id="dreamTitle" placeholder="Title">
+        <input id="dreamDate" placeholder="Date">
+        <input id="dreamMood" placeholder="Mood">
+        <input id="dreamVividness" placeholder="Vividness">
+        <textarea id="dreamDescription" placeholder="Description"></textarea>
+        <button class="submit-btn" onclick="createDream()">Create Dream</button>
+        <button class="submit-btn" onclick="updateDream()">Update Dream</button>
+    </div>
+</div>
+
+<!-- SYMBOLS -->
+<div id="symbols" class="section">
+    <h2>Symbols</h2>
+
+    <div class="card">
+        <button onclick="getAllSymbols()">Get All Symbols</button>
+        <input id="symbolId" placeholder="Symbol ID">
+        <button onclick="getSymbol()">Get Symbol</button>
+        <button onclick="deleteSymbol()">Delete Symbol</button>
+    </div>
+
+    <div class="card">
+        <input id="symbolName" placeholder="Name">
+        <input id="symbolDescription" placeholder="Description">
+        <button class="submit-btn" onclick="createSymbol()">Create Symbol</button>
+        <button class="submit-btn" onclick="updateSymbol()">Update Symbol</button>
+    </div>
+</div>
+
+<!-- POEMS -->
+<div id="poems" class="section">
+    <h2>Poems</h2>
+
+    <div class="card">
+        <button onclick="getAllPoems()">Get All Poems</button>
+        <input id="poemId" placeholder="Poem ID">
+        <button onclick="getPoem()">Get Poem</button>
+        <button onclick="deletePoem()">Delete Poem</button>
+    </div>
+
+    <div class="card">
+        <input id="poemAuthorId" placeholder="Author ID">
+        <input id="poemDreamId" placeholder="Dream ID">
+        <textarea id="poemContent" placeholder="Content"></textarea>
+        <button class="submit-btn" onclick="createPoem()">Create Poem</button>
+        <button class="submit-btn" onclick="updatePoem()">Update Poem</button>
+    </div>
+</div>
+
+<!-- DREAMSYMBOLS -->
+<div id="dreamsymbols" class="section">
+    <h2>Dream Symbols</h2>
+
+    <div class="card">
+        <button onclick="getAllDreamSymbols()">Get All Links</button>
+        <input id="filterDreamId" placeholder="Filter Dream ID">
+        <button onclick="getSymbolsForDream()">Get Symbols for Dream</button>
+    </div>
+
+    <div class="card">
+        <input id="linkId" placeholder="Link ID">
+        <button onclick="getDreamSymbol()">Get Link</button>
+    </div>
+
+    <div class="card">
+        <input id="linkDreamId" placeholder="Dream ID">
+        <input id="linkSymbolId" placeholder="Symbol ID">
+        <button class="submit-btn" onclick="linkDreamSymbol()">Create Link</button>
+        <button class="submit-btn" onclick="updateDreamSymbol()">Update Link</button>
+        <button class="delete-btn" onclick="deleteDreamSymbol()">Delete Link</button>
+    </div>
+</div>
+
+<!-- RESPONSE SECTION -->
+<div class="response-container">
+    <h2>Response</h2>
+    <div class="card">
+        <pre id="output"></pre>
+    </div>
+</div>
+
+<script src="/static/script.js"></script>
+
+<script>
+function showSection(sectionId) {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+}
+</script>
+
+</body>
+</html>
