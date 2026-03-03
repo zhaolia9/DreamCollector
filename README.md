@@ -1,203 +1,337 @@
-# Aurelia
+# 🌙 Aurelia – Dream Journal Web Application
 
-Aurelia is a dream-and-poetry platform where users log dreams, tag symbols, and write poems inspired by those dreams.
+Aurelia is a full-stack Dream Journal application built with a layered architecture using FastAPI, MySQL, and a custom web client interface.
 
-## Tech
-- Python
-- PyMySQL
-- Requests (for console frontend)
-- Uvicorn
-- MySQL
-- Layered architecture (models, data access, app)
+This project demonstrates:
 
-## Setup
-1. Create DB:
-   - Run `sql/01_create_tables.sql`
-   - Run `sql/02_insert_test_data.sql`
-2. Install deps:
-   - `pip install -r backend/requirements.txt`
-3. Run:
-   - `python backend/test_harness.py`
+* Service Layer architecture
+* Full CRUD operations for multiple entities
+* RESTful API design
+* Console-based testing harness
+* Web-based client layer
+* Local MySQL database integration
+* Themed UI implementation
 
-## Architecture
-- models/ = domain objects
-- data/ = repository / data access layer
-- app_api.py = API client
-- output.txt = test_frontend.py console output
+---
+# 🏗️ Project Architecture
 
-# 🔁 Features Implemented
+The application follows a layered design pattern:
 
-## ✅ Full CRUD Operations
+```
+Client Layer (HTML/CSS/JS)
+        ↓
+FastAPI Controller Layer
+        ↓
+Service Layer
+        ↓
+Manager / Data Access Layer
+        ↓
+MySQL Database
+```
 
-For:
+### Layers Explained
+
+### 1️⃣ Client Layer
+
+* Built using HTML, CSS, and JavaScript
+* Communicates with backend via REST API
+* Fully styled Dream Journal aesthetic
+* Calls ALL “GET” endpoints for ALL tables (per project requirements)
+
+### 2️⃣ Controller Layer
+
+* Implemented using FastAPI
+* Defines REST endpoints for all entities
+* Handles request/response serialization
+
+### 3️⃣ Service Layer
+
+* Contains business logic
+* Delegates database operations to manager classes
+
+### 4️⃣ Data Access Layer
+
+* Handles direct interaction with MySQL
+* Executes SQL queries
+* Returns structured data
+
+### 5️⃣ Database
+
+* MySQL (hosted locally)
+* Multiple related tables with foreign key relationships
+
+---
+
+# 🗄️ Database Schema
+
+The system includes the following tables:
+
+### Users
+
+* id
+* name
+* email
+
+### Dreams
+
+* id
+* user_id (FK → Users)
+* title
+* description
+* date
+* mood
+* vividness
+
+### Symbols
+
+* id
+* name
+* description
+
+### Poems
+
+* id
+* author_id (FK → Users)
+* dream_id (FK → Dreams)
+* content
+
+### DreamSymbols (Link Table)
+
+* dream_id (FK → Dreams)
+* symbol_id (FK → Symbols)
+
+---
+
+# 🔌 API Endpoints
+
+All endpoints are implemented with full CRUD functionality.
+
+---
+
+## USERS
+
+```
+POST    /users
+GET     /users
+GET     /users/{user_id}
+PUT     /users/{user_id}
+DELETE  /users/{user_id}
+```
+
+---
+
+## DREAMS
+
+```
+POST    /dreams
+GET     /dreams
+GET     /dreams/{dream_id}
+PUT     /dreams/{dream_id}
+DELETE  /dreams/{dream_id}
+```
+
+---
+
+## SYMBOLS
+
+```
+POST    /symbols
+GET     /symbols
+GET     /symbols/{symbol_id}
+PUT     /symbols/{symbol_id}
+DELETE  /symbols/{symbol_id}
+```
+
+---
+
+## POEMS
+
+```
+POST    /poems
+GET     /poems
+GET     /poems/{poem_id}
+PUT     /poems/{poem_id}
+DELETE  /poems/{poem_id}
+```
+
+---
+
+## DREAMSYMBOLS
+
+```
+POST    /dreamsymbols
+GET     /dreamsymbols
+GET     /dreamsymbols?dream_id=X
+GET     /dreamsymbols/{link_id}
+PUT     /dreamsymbols/{link_id}
+DELETE  /dreamsymbols?dream_id=X&symbol_id=Y
+```
+
+---
+
+# 🖥️ Console-Based Test Harness
+
+A console front-end (`test_frontend.py`) was implemented for:
+
+* Manual CRUD testing
+* Menu-based navigation
+* Input validation
+* ReadAll before each action
+* Entity-specific submenus (Users, Dreams, Symbols, Poems, DreamSymbols)
+
+This allowed full service-layer verification before building the web client.
+
+---
+
+# 🌐 Web Client Layer
+
+A fully functional web-based client was created using:
+
+* HTML
+* CSS
+* JavaScript (Fetch API)
+
+### Features
+
+* Calls ALL “get” methods for ALL tables
+* Performs full CRUD
+* Section-based navigation
+* Dynamic output display
+* Themed UI (Dream Journal aesthetic)
+
+---
+
+# 🎨 UI Theme: Dream Journal Aesthetic
+
+The client uses a custom `styles.css` with:
+
+* Soft pastel gradient background
+* Glassmorphism card styling
+* Rounded UI elements
+* Serif typography
+* Navigation toggling between entities
+* Always-visible response section
+* Responsive layout
+
+Sections include:
 
 * Users
 * Dreams
 * Symbols
 * Poems
-* DreamSymbols
-
-Each entity supports:
-
-* Create
-* Read (Single + All)
-* Update
-* Delete
+* Dream Symbols
+* Oracle Response (API output display)
 
 ---
 
-## 🖥 Console-Based Front End
+# ⚙️ Running the Application Locally
 
-`console_frontend.py` acts as an interactive console application that:
+## 1️⃣ Start MySQL
 
-* Displays menus for each entity
-* Allows users to navigate between:
-
-  * User menu
-  * Dreams menu
-  * Symbols menu
-  * Poems menu
-  * DreamSymbols menu
-* Performs CRUD actions
-* Displays updated data after each action
+Ensure MySQL is running locally and the database is created.
 
 ---
 
-## 🛡 Input Validation Added
-
-The console front end includes:
-
-* Menu input validation
-* Integer ID validation
-* Empty field validation
-* Safe handling of invalid selections
-* Graceful handling of server errors
-
----
-
-# 💻 Running Locally
-
-## 1️⃣ Create Virtual Environment
+## 2️⃣ Activate Virtual Environment
 
 ```
-python -m venv .venv
-```
-
-Activate:
-
-Windows:
-
-```
-.venv\Scripts\activate
-```
-
-Mac/Linux:
-
-```
-source .venv/bin/activate
+venv\Scripts\activate
 ```
 
 ---
 
-## 2️⃣ Install Dependencies
+## 3️⃣ Run FastAPI Backend
 
 ```
-pip install -r requirements.txt
+uvicorn aurelia.app_api:app --reload
 ```
 
----
-
-## 3️⃣ Configure MySQL
-
-Ensure MySQL is running locally.
-
-Update your connection string if using local MySQL:
+Server runs at:
 
 ```
-mysql+pymysql://username:password@localhost/databasename
-```
-
-Or set environment variable:
-
-```
-DATABASE_URL=mysql+pymysql://username:password@localhost/databasename
+http://127.0.0.1:8000
 ```
 
 ---
 
-## 4️⃣ Run the API
+## 4️⃣ Open Client
+
+Open in browser:
 
 ```
-python app_api.py
-```
-
-Default:
-
-```
-http://127.0.0.1:5000
+http://127.0.0.1:8000/static/index.html
 ```
 
 ---
 
-## 5️⃣ Run Console Front End
+# 📦 Technologies Used
 
-In a separate terminal:
-
-```
-python console_frontend.py
-```
-
----
-
-# 📂 Project Structure
-
-```
-/aurelia
-│
-├── app_api.py
-├── test_frontend.py
-├── models.py
-├── requirements.txt
-└── README.md
-```
+* Python
+* FastAPI
+* Uvicorn
+* MySQL
+* HTML
+* CSS
+* JavaScript (Fetch API)
 
 ---
 
-# 🧪 Testing
+# 🧪 Testing Performed
 
-Testing is performed using:
-
-* Interactive console-based frontend
-* Manual endpoint verification
-* Read-all verification before and after CRUD operations
-
-All entities and relationships were verified through:
-
-* Creation
-* Retrieval
-* Update
-* Deletion
-* Relationship integrity
+* Manual CRUD testing via console harness
+* Endpoint validation via Swagger UI
+* Client-to-backend integration testing
+* MySQL connection validation
+* Input validation for numeric fields
+* Link-table relationship testing
 
 ---
 
-# 🎯 Learning Outcomes
+# 🧠 Key Challenges Solved
 
-This project demonstrates:
-
-* REST API design
-* Relational database modeling
-* Error handling and debugging
-* Environment variable configuration
-* Backend system architecture principles
+* MySQL authentication issues
+* JSON parsing errors
+* Endpoint routing inconsistencies
+* Linking dream-symbol relationships
+* Static file hosting in FastAPI
+* Section navigation state management
+* Response container visibility fix
 
 ---
 
-# 🔮 Future Improvements
+# 🚀 Hosting
 
-* Web-based frontend
-* Authentication (JWT)
-* Role-based access control
-* Pagination for large datasets
-* Automated unit tests
-* Full cloud deployment with managed MySQL
+Currently hosted locally using:
+
+```
+Uvicorn + FastAPI static file serving
+```
+
+No IIS or external hosting required for local deployment.
+
+---
+
+# 📸 Project Requirements Satisfied
+
+✔ Client calls ALL GET endpoints
+✔ Client hosted locally
+✔ Full CRUD operations
+✔ Layered architecture maintained
+✔ Screenshots ready for submission
+
+---
+
+# 🌌 Future Enhancements
+
+* Authentication layer
+* User login system
+* Rich dream visualization UI
+* React-based frontend
+* Deployment to cloud (Render, Railway, or Azure)
+* Full UX redesign for portfolio use
+
+---
+
+# 👤 Author
+
+Developed as part of a multi-phase service-layer and client-layer software architecture project.
