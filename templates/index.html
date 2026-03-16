@@ -54,7 +54,7 @@ Log your dreams, explore their meanings, and find poetic inspiration with our in
     <div class="card">
         <input id="dreamUserId" placeholder="User ID">
         <input id="dreamTitle" placeholder="Title">
-        <input id="dreamDate" placeholder="Date">
+        <input id="dreamDate" placeholder="Date (YYYY-MM-DD)">
         <input id="dreamMood" placeholder="Mood">
         <input id="dreamVividness" placeholder="Vividness">
         <textarea id="dreamDescription" placeholder="Description"></textarea>
@@ -97,6 +97,7 @@ Log your dreams, explore their meanings, and find poetic inspiration with our in
         <input id="poemAuthorId" placeholder="Author ID">
         <input id="poemDreamId" placeholder="Dream ID">
         <textarea id="poemContent" placeholder="Content"></textarea>
+        <input id="poemDate" placeholder="Created At (YYYY-MM-DD)">
         <button class="submit-btn" onclick="createPoem()">Create Poem</button>
         <button class="submit-btn" onclick="updatePoem()">Update Poem</button>
     </div>
@@ -113,13 +114,9 @@ Log your dreams, explore their meanings, and find poetic inspiration with our in
     </div>
 
     <div class="card">
-        <input id="linkId" placeholder="Link ID">
-        <button onclick="getDreamSymbol()">Get Link</button>
-    </div>
-
-    <div class="card">
         <input id="linkDreamId" placeholder="Dream ID">
         <input id="linkSymbolId" placeholder="Symbol ID">
+        <button onclick="getDreamAndSymbol()">Get Dream-Symbol Link</button>
         <button class="submit-btn" onclick="linkDreamSymbol()">Create Link</button>
         <button class="submit-btn" onclick="updateDreamSymbol()">Update Link</button>
         <button class="delete-btn" onclick="deleteDreamSymbol()">Delete Link</button>
@@ -128,10 +125,8 @@ Log your dreams, explore their meanings, and find poetic inspiration with our in
 
 <!-- RESPONSE SECTION -->
 <div class="response-container">
-    <h2>Response</h2>
-    <div class="card">
-        <pre id="output"></pre>
-    </div>
+    <h2>Results</h2>
+    <div id="output" class="results-grid"></div>
 </div>
 
 <script src="/static/script.js"></script>

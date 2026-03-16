@@ -24,6 +24,11 @@ def print_poems(dp):
     for p in poems:
         print(f"[{p['id']}] Author {p['author_id']} | Dream {p['dream_id']}")
         print(f"    {p['content']}")
+def print_dreamsymbols(dp):
+    print("\n--- DREAM-SYMBOL RELATIONS ---")
+    relations = dp.read_all_dreamsymbols()
+    for r in relations:
+        print(f"Dream {r['dream_id']} <-> Symbol {r['symbol_id']}")
 
 def main():
     print("=== Aurelia Console Test Harness ===")
@@ -36,8 +41,8 @@ def main():
         print("2. View all dreams")
         print("3. View all symbols")
         print("4. View all poems")
+        print("5. View all dream-symbol relations")
         print("0. Exit")
-
         choice = input("Choose an option: ").strip()
 
         if choice == "1":
@@ -48,6 +53,8 @@ def main():
             print_symbols(dp)
         elif choice == "4":
             print_poems(dp)
+        elif choice == "5":
+            print_dreamsymbols(dp)
         elif choice == "0":
             print("Goodbye!")
             break

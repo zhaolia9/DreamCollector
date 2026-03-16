@@ -1,10 +1,42 @@
 
 
 // Basic JavaScript to interact with the API and display results
-const output = document.getElementById("output");
+//const output = document.getElementById("output");
 
 function display(data) {
-    output.textContent = JSON.stringify(data, null, 2);
+
+    const output = document.getElementById("output");
+    output.innerHTML = "";
+
+    if (!data) {
+        output.innerHTML = "<p>No results found.</p>";
+        return;
+    }
+
+    if (!Array.isArray(data)) {
+        data = [data];
+    }
+
+    data.forEach(item => {
+
+        const card = document.createElement("div");
+        card.className = "result-card";
+
+        let content = "";
+
+        for (const key in item) {
+
+            const label = key.replace("_"," ");
+
+            content += `
+                <p><strong>${label}:</strong> ${item[key]}</p>
+            `;
+        }
+
+        card.innerHTML = content;
+
+        output.appendChild(card);
+    });
 }
 
 async function apiCall(url, method="GET", body=null) {
@@ -67,10 +99,10 @@ function getAllPoems(){ apiCall("/poems"); }
 function getPoem(){ apiCall(`/poems/${poemId.value}`); }
 function deletePoem(){ apiCall(`/poems/${poemId.value}`,"DELETE"); }
 function createPoem(){
-    apiCall("/poems","POST",{author_id:poemAuthorId.value,dream_id:poemDreamId.value,content:poemContent.value});
+    apiCall("/poems","POST",{author_id:poemAuthorId.value,dream_id:poemDreamId.value,content:poemContent.value, created_at: poemDate.value});
 }
 function updatePoem(){
-    apiCall(`/poems/${poemId.value}`,"PUT",{author_id:poemAuthorId.value,dream_id:poemDreamId.value,content:poemContent.value});
+    apiCall(`/poems/${poemId.value}`,"PUT",{author_id:poemAuthorId.value,dream_id:poemDreamId.value,content:poemContent.value, created_at: poemDate.value});
 }
 
 /* DREAMSYMBOLS */
@@ -81,6 +113,10 @@ function getSymbolsForDream(){
 function getDreamSymbol(){
     apiCall(`/dreamsymbols/${linkId.value}`);
 }
+function getDreamAndSymbol(){
+    apiCall(`/dreams/${linkDreamId.value}/symbols/${linkSymbolId.value}`);
+}
+
 function linkDreamSymbol(){
     apiCall("/dreamsymbols","POST",{dream_id:linkDreamId.value,symbol_id:linkSymbolId.value});
 }

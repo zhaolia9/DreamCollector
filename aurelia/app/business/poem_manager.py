@@ -10,9 +10,9 @@ class PoemManager:
         self.provider = DataProvider()
 
     # Business logic for managing poems
-    def create_poem(self, author_id, dream_id, content):
+    def create_poem(self, author_id, dream_id, content, created_at):
         return self.provider.create_poem(
-            Poem(None, author_id, dream_id, content, datetime.now()) 
+            Poem(None, author_id, dream_id, content, created_at) 
             # created_at is set to current time when poem is created
         )
 
@@ -22,9 +22,9 @@ class PoemManager:
     def get_all_poems(self):
         return self.provider.read_all_poems()
 
-    def update_poem(self, poem_id, author_id, dream_id, content):
+    def update_poem(self, poem_id, author_id, dream_id, content, created_at):
         return self.provider.update_poem(
-            Poem(poem_id, author_id, dream_id, content, datetime.now())
+            Poem(poem_id, author_id, dream_id, content, created_at)
         )
 
     def delete_poem(self, poem_id):

@@ -21,6 +21,10 @@ def create_link_symbol(dream_id: int, symbol_id: int):
 def get_symbols_for_dream(dream_id: int):
     return manager.get_symbols_for_dream(dream_id)
 
+@router.get("/dreams/{dream_id}/symbols/{symbol_id}")
+def get_dream_and_symbol(dream_id: int, symbol_id: int):
+    return manager.get_dream_and_symbol(dream_id, symbol_id)
+
 # This endpoint retrieves all dream-symbol links in the database, 
 # allowing us to see all associations between dreams and symbols.
 # added for completeness, but not currently used in the API

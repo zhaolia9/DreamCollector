@@ -180,7 +180,7 @@ def delete_symbol(symbol_id: int):
 # ----------------------
 @app.post("/poems")
 def create_poem(poem: PoemSchema):
-    return poem_service.create_poem(poem.author_id, poem.dream_id, poem.content)
+    return poem_service.create_poem(poem.author_id, poem.dream_id, poem.content, poem.created_at)
 
 @app.get("/poems")
 def get_all_poems():
@@ -192,7 +192,7 @@ def get_poem(poem_id: int):
 
 @app.put("/poems/{poem_id}")
 def update_poem(poem_id: int, poem: PoemSchema):
-    return poem_service.update_poem(poem_id, poem.author_id, poem.dream_id, poem.content)
+    return poem_service.update_poem(poem_id, poem.author_id, poem.dream_id, poem.content, poem.created_at)
 
 @app.delete("/poems/{poem_id}")
 def delete_poem(poem_id: int):
@@ -216,6 +216,10 @@ def get_all_dream_symbols(dream_id: Optional[int] = None):
 @app.get("/dreamsymbols/{link_id}")
 def get_dream_symbol(link_id: int):
     return dream_symbol_service.get_symbols_for_dream(link_id)
+
+@app.get("/dreams/{dream_id}/symbols/{symbol_id}")
+def get_dream_and_symbol(dream_id: int, symbol_id: int):
+    return dream_symbol_service.get_dream_and_symbol(dream_id, symbol_id)
 
 @app.put("/dreamsymbols/{link_id}")
 def update_dream_symbol(link_id: int, link: DreamSymbolSchema):

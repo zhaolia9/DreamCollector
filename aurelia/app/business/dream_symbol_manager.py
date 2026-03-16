@@ -23,6 +23,9 @@ class DreamSymbolManager:
     # allowing us to see which symbols are linked to a given dream.
     def get_symbols_for_dream(self, dream_id):
         return self.provider.read_dream_symbols_by_dream(dream_id)
+    
+    def get_dream_and_symbol(self, dream_id, symbol_id):
+        return self.provider.read_dream_symbol_by_id(dream_id, symbol_id)
 
     # This method retrieves all dream-symbol links in the database, 
     # allowing us to see all associations between dreams and symbols.

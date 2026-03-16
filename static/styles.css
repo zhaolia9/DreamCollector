@@ -126,6 +126,27 @@ h1 {
     background: rgba(255,255,255,0.15);
 }
 
+/* Results grid */
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+/* Result cards */
+
+.result-card {
+    background: rgba(255,255,255,0.18);
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.result-card h3 {
+    margin-top: 0;
+}
+
 /* --------------------------
    Forms
 --------------------------- */
