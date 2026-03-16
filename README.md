@@ -94,6 +94,7 @@ The system includes the following tables:
 * author_id (FK → Users)
 * dream_id (FK → Dreams)
 * content
+* created_at
 
 ### DreamSymbols (Link Table)
 
@@ -163,6 +164,7 @@ POST    /dreamsymbols
 GET     /dreamsymbols
 GET     /dreamsymbols?dream_id=X
 GET     /dreamsymbols/{link_id}
+GET     /dreams/{dream_id}/symbols/{symbol_id}
 PUT     /dreamsymbols/{link_id}
 DELETE  /dreamsymbols?dream_id=X&symbol_id=Y
 ```
